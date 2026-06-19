@@ -11,20 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <script>
-    function openBooking(){
-      var m=document.getElementById('bookingModal');
-      if(m){m.classList.add('open');document.body.style.overflow='hidden';}
-    }
-    function closeBooking(){
-      var m=document.getElementById('bookingModal');
-      if(m){m.classList.remove('open');document.body.style.overflow='';}
-    }
-    function closeBookingOnOverlay(e){
-      if(e.target===document.getElementById('bookingModal'))closeBooking();
-    }
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBooking();});
-  </script>
+  <!-- booking functions defined in body script -->
   <style>
     /* ===================== VARIABLES ===================== */
     :root {
@@ -1562,23 +1549,23 @@
     </div>
   </div>
 </div>
-<script src="https://link.spotonresults.com/js/form_embed.js" type="text/javascript"></script>
+<script src="https://link.spotonresults.com/js/form_embed.js" type="text/javascript" async defer></script>
 
 <!-- ==================== JS ==================== -->
 <script>
 /* ---- Booking Modal ---- */
 function openBooking(){
-  document.getElementById('bookingModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  var m=document.getElementById('bookingModal');
+  if(m){m.classList.add('open');document.body.style.overflow='hidden';}
 }
 function closeBooking(){
-  document.getElementById('bookingModal').classList.remove('open');
-  document.body.style.overflow = '';
+  var m=document.getElementById('bookingModal');
+  if(m){m.classList.remove('open');document.body.style.overflow='';}
 }
 function closeBookingOnOverlay(e){
-  if(e.target === document.getElementById('bookingModal')) closeBooking();
+  if(e.target===document.getElementById('bookingModal'))closeBooking();
 }
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeBooking(); });
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBooking();});
 
 /* ---- Particles ---- */
 (function(){
@@ -1608,10 +1595,18 @@ document.querySelectorAll('#navLinks a').forEach(a=>{
 });
 
 /* ---- Scroll Reveal ---- */
+const revEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
 const io = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
-},{threshold:.1, rootMargin:'0px 0px -44px 0px'});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('vis');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.05, rootMargin:'0px 0px 0px 0px'});
+revEls.forEach(el=>io.observe(el));
+/* Fallback: reveal everything after 3s in case observer misfires */
+setTimeout(()=>revEls.forEach(el=>el.classList.add('vis')), 3000);
 
 /* ---- Counter Animation ---- */
 function animCount(el){
@@ -1666,4 +1661,11 @@ function toggleSvc(btn){
 /* ---- FAQ Accordion ---- */
 function toggleFaq(el){
   const item = el.parentElement;
-  const open = item.classList.contains('open'
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!open) item.classList.add('open');
+}
+</script>
+</body>
+</html>
+                                                                                                              
