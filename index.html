@@ -31,8 +31,8 @@
       --gold:        #F59E0B;
       --gold-dark:   #D97706;
       --gold-light:  #FCD34D;
-      --bg:          #050811;
-      --bg-2:        #080d1a;
+      --bg:          #0d1728;
+      --bg-2:        #141f35;
       --bg-card:     rgba(255,255,255,0.04);
       --border:      rgba(255,255,255,0.08);
       --border-gold: rgba(245,158,11,0.3);
@@ -154,13 +154,9 @@
       display:flex; align-items:center; gap:12px;
     }
     .logo-mark {
-      width:42px; height:42px;
-      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
-      border-radius:11px;
-      display:flex; align-items:center; justify-content:center;
-      font-family:'Plus Jakarta Sans',sans-serif;
-      font-weight:900; font-size:17px; color:#000;
+      width:46px; height:46px;
       flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
     }
     .logo-name {
       font-family:'Plus Jakarta Sans',sans-serif;
@@ -196,11 +192,11 @@
     .hero-bg { position:absolute; inset:0; pointer-events:none; }
     .orb {
       position:absolute; border-radius:50%;
-      filter:blur(90px); opacity:.25;
+      filter:blur(90px); opacity:.38;
     }
     .orb1 { width:700px;height:700px; background:radial-gradient(circle,#F59E0B 0%,transparent 70%); top:-250px;right:-180px; animation:o1 9s ease-in-out infinite; }
     .orb2 { width:500px;height:500px; background:radial-gradient(circle,#D97706 0%,transparent 70%); bottom:-150px;left:-120px; animation:o2 12s ease-in-out infinite; }
-    .orb3 { width:350px;height:350px; background:radial-gradient(circle,#1D4ED8 0%,transparent 70%); top:40%;left:35%; animation:o3 15s ease-in-out infinite; opacity:.15; }
+    .orb3 { width:350px;height:350px; background:radial-gradient(circle,#1D4ED8 0%,transparent 70%); top:40%;left:35%; animation:o3 15s ease-in-out infinite; opacity:.22; }
     @keyframes o1 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-40px,30px) scale(1.06)} 70%{transform:translate(25px,-25px) scale(.95)} }
     @keyframes o2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(50px,-40px) scale(1.08)} }
     @keyframes o3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-35px,50px)} }
@@ -646,8 +642,8 @@
     .test-wrap::before,.test-wrap::after{
       content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
     }
-    .test-wrap::before{left:0;background:linear-gradient(to right,var(--bg),transparent);}
-    .test-wrap::after{right:0;background:linear-gradient(to left,var(--bg),transparent);}
+    .test-wrap::before{left:0;background:linear-gradient(to right,var(--bg-light),transparent);}
+    .test-wrap::after{right:0;background:linear-gradient(to left,var(--bg-light),transparent);}
     .test-track{
       display:flex;gap:24px;
       animation:scroll 35s linear infinite;
@@ -656,12 +652,13 @@
     .test-track:hover{animation-play-state:paused;}
     @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
     .test-card{
-      background:var(--bg-card);border:1px solid var(--border);
+      background:#fff;border:1px solid var(--border-light);
       border-radius:var(--radius);padding:32px;
       width:370px;min-width:370px;flex-shrink:0;
+      box-shadow:0 4px 24px rgba(0,0,0,0.07);
     }
     .test-stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:16px;}
-    .test-q{font-size:15px;color:var(--text-muted);line-height:1.68;margin-bottom:24px;}
+    .test-q{font-size:15px;color:var(--text-dark-muted);line-height:1.68;margin-bottom:24px;}
     .test-auth{display:flex;align-items:center;gap:13px;}
     .test-av{
       width:46px;height:46px;border-radius:50%;
@@ -669,8 +666,8 @@
       display:flex;align-items:center;justify-content:center;
       font-weight:800;font-size:13px;color:#000;flex-shrink:0;
     }
-    .test-name{font-size:14px;font-weight:700;margin-bottom:2px;}
-    .test-biz{font-size:13px;color:var(--text-muted);}
+    .test-name{font-size:14px;font-weight:700;margin-bottom:2px;color:var(--text-dark);}
+    .test-biz{font-size:13px;color:var(--text-dark-muted);}
 
     /* ===================== FAQ ===================== */
     #faq{padding:108px 0;background:var(--bg-2);}
@@ -732,8 +729,22 @@
     .foot-col h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:22px;}
     .foot-col ul{list-style:none;}
     .foot-col ul li{margin-bottom:10px;}
-    .foot-col ul li a{color:var(--text-muted);font-size:14px;transition:color .2s;}
-    .foot-col ul li a:hover{color:var(--text);}
+    .foot-col ul li a{
+      color:var(--text-muted);font-size:14px;
+      transition:color .25s var(--ease),padding-left .25s var(--ease);
+      display:inline-block; position:relative; padding-left:0;
+    }
+    .foot-col ul li a::before{
+      content:'→'; position:absolute; left:0;
+      color:var(--gold); opacity:0; font-size:11px; top:1px;
+      transition:opacity .25s var(--ease);
+    }
+    .foot-col ul li a:hover{color:var(--gold);padding-left:14px;}
+    .foot-col ul li a:hover::before{opacity:1;}
+
+    /* ===================== WAVE DIVIDERS ===================== */
+    .wave-div{line-height:0;overflow:hidden;display:block;margin:0;padding:0;}
+    .wave-div svg{display:block;width:100%;}
     .foot-bot{
       border-top:1px solid var(--border);padding-top:28px;
       display:flex;justify-content:space-between;align-items:center;
@@ -845,7 +856,16 @@
   <div class="container">
     <div class="nav-in">
       <a href="#" class="logo">
-        <div class="logo-mark">SR</div>
+        <div class="logo-mark">
+          <svg width="46" height="46" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <text x="4" y="95" font-size="100" font-weight="900"
+              font-family="Georgia,'Times New Roman',serif"
+              fill="#0d1728" stroke="#F59E0B" stroke-width="5" paint-order="stroke">S</text>
+            <text x="48" y="112" font-size="82" font-weight="900"
+              font-family="Georgia,'Times New Roman',serif"
+              fill="#F59E0B" stroke="#0a0f1e" stroke-width="4" paint-order="stroke">R</text>
+          </svg>
+        </div>
         <div class="logo-name">SpotOn <em>Results</em></div>
       </a>
       <ul class="nav-links" id="navLinks">
@@ -992,6 +1012,13 @@
   </div>
 </section>
 
+<!-- wave: dark → white -->
+<div class="wave-div" style="background:#0d1728" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" height="90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,45 C360,90 1080,5 1440,50 L1440,90 L0,90 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
 <!-- ==================== PAIN POINTS ==================== -->
 <section id="pain" class="sec-white">
   <div class="container">
@@ -1022,6 +1049,13 @@
     <p class="solution-p reveal">We analyze your current statement, shop the best solutions across our trusted network, and deliver custom pricing tailored to your exact business — all at no cost to switch.</p>
   </div>
 </section>
+
+<!-- wave: white → dark -->
+<div class="wave-div" style="background:#ffffff" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" height="90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C480,80 960,0 1440,55 L1440,90 L0,90 Z" fill="#0d1728"/>
+  </svg>
+</div>
 
 <!-- ==================== SERVICES ==================== -->
 <section id="services">
@@ -1159,6 +1193,13 @@
   </div>
 </section>
 
+<!-- wave: dark → light -->
+<div class="wave-div" style="background:#0d1728" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" height="90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,55 C240,90 480,20 720,55 C960,90 1200,15 1440,45 L1440,90 L0,90 Z" fill="#F4F6F9"/>
+  </svg>
+</div>
+
 <!-- ==================== PROCESS ==================== -->
 <section id="process" class="sec-light">
   <div class="container">
@@ -1185,6 +1226,13 @@
     </div>
   </div>
 </section>
+
+<!-- wave: light → dark -->
+<div class="wave-div" style="background:#F4F6F9" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" height="90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,35 C360,0 720,80 1080,25 C1200,10 1350,55 1440,40 L1440,90 L0,90 Z" fill="#0d1728"/>
+  </svg>
+</div>
 
 <!-- ==================== SAVINGS CALCULATOR ==================== -->
 <section id="calculator">
@@ -1236,6 +1284,13 @@
     </div>
   </div>
 </section>
+
+<!-- wave: dark → white -->
+<div class="wave-div" style="background:#0d1728" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" height="90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,60 C180,90 360,30 540,55 C720,80 900,20 1080,50 C1260,75 1380,35 1440,45 L1440,90 L0,90 Z" fill="#ffffff"/>
+  </svg>
+</div>
 
 <!-- ==================== INDUSTRIES ==================== -->
 <section id="industries" class="sec-white">
@@ -1316,8 +1371,15 @@
   </div>
 </section>
 
+<!-- wave: white → light -->
+<div class="wave-div" style="background:#ffffff" aria-hidden="true">
+  <svg viewBox="0 0 1440 70" height="70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C480,70 960,10 1440,40 L1440,70 L0,70 Z" fill="#F4F6F9"/>
+  </svg>
+</div>
+
 <!-- ==================== TESTIMONIALS ==================== -->
-<section id="testimonials">
+<section id="testimonials" class="sec-light">
   <div class="container">
     <div class="test-head">
       <div class="section-pill reveal">Client Success Stories</div>
@@ -1337,6 +1399,13 @@
     </div>
   </div>
 </section>
+
+<!-- wave: light → dark -->
+<div class="wave-div" style="background:#F4F6F9" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" height="90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C240,10 480,80 720,35 C960,0 1200,70 1440,30 L1440,90 L0,90 Z" fill="#0d1728"/>
+  </svg>
+</div>
 
 <!-- ==================== FAQ ==================== -->
 <section id="faq">
@@ -1416,7 +1485,16 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <div class="logo">
-          <div class="logo-mark">SR</div>
+          <div class="logo-mark">
+          <svg width="46" height="46" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <text x="4" y="95" font-size="100" font-weight="900"
+              font-family="Georgia,'Times New Roman',serif"
+              fill="#0d1728" stroke="#F59E0B" stroke-width="5" paint-order="stroke">S</text>
+            <text x="48" y="112" font-size="82" font-weight="900"
+              font-family="Georgia,'Times New Roman',serif"
+              fill="#F59E0B" stroke="#0a0f1e" stroke-width="4" paint-order="stroke">R</text>
+          </svg>
+        </div>
           <div class="logo-name">SpotOn <em>Results</em></div>
         </div>
         <p>Business Payment Advisors helping local businesses streamline transactions, increase efficiency, and save on processing costs with our trusted network of providers.</p>
