@@ -117,24 +117,24 @@ nav.sc{padding:12px 0;background:rgba(6,15,30,.88);backdrop-filter:blur(22px);bo
 #pcanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
 .hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(245,158,11,.1) 0%,transparent 68%);pointer-events:none;z-index:1}
 .hero-in{position:relative;z-index:2;width:var(--cw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px 7px 10px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:50px;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:28px;opacity:0}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px 7px 10px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:50px;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:28px}
 .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pls 2s infinite}
 @keyframes pls{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
 .hero-h1{font-family:var(--font-d);font-size:clamp(40px,6vw,78px);font-weight:800;line-height:1.0;letter-spacing:-.03em;color:var(--text);margin-bottom:24px;overflow:hidden}
 .hero-h1 .hline{overflow:hidden;display:block}
 .hero-h1 .gold{color:var(--gold)}
-.hero-sub{font-size:clamp(15px,1.8vw,18px);color:var(--text-m);line-height:1.72;max-width:480px;margin-bottom:36px;opacity:0;font-weight:300}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;margin-bottom:44px}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);color:var(--text-m);line-height:1.72;max-width:480px;margin-bottom:36px;font-weight:300}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
 .btn-p{padding:15px 30px;font-size:15px;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold-m));color:var(--navy);border-radius:50px;transition:transform .25s var(--spring),box-shadow .25s;box-shadow:0 6px 30px rgba(245,158,11,.35);white-space:nowrap;display:inline-block}
 .btn-p:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 44px rgba(245,158,11,.45)}
 .btn-g{padding:14px 28px;font-size:15px;font-weight:600;background:transparent;color:var(--text);border:1.5px solid var(--border-m);border-radius:50px;transition:border-color .25s,background .25s,transform .25s var(--spring);white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
 .btn-g:hover{border-color:var(--gold);background:rgba(245,158,11,.05);transform:translateY(-2px)}
-.hero-trust{display:flex;align-items:center;gap:16px;opacity:0}
+.hero-trust{display:flex;align-items:center;gap:16px}
 .avatars{display:flex}
 .av{width:32px;height:32px;border-radius:50%;background:var(--navy4);border:2px solid var(--navy2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold);margin-right:-10px}
 .trust-txt{font-size:13px;color:var(--text-m);line-height:1.4}.trust-txt strong{color:var(--text)}
 /* Hero card */
-.hero-card{position:relative;padding:32px;background:var(--glass-m);border:1px solid var(--border-m);border-radius:var(--rl);backdrop-filter:blur(24px);opacity:0;transform:translateY(30px) scale(.98);box-shadow:0 28px 70px rgba(0,0,0,.45),var(--glow)}
+.hero-card{position:relative;padding:32px;background:var(--glass-m);border:1px solid var(--border-m);border-radius:var(--rl);backdrop-filter:blur(24px);box-shadow:0 28px 70px rgba(0,0,0,.45),var(--glow)}
 .hc-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
 .hc-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-d)}
 .hc-live{display:flex;align-items:center;gap:6px;font-size:12px;color:#22c55e}
@@ -151,7 +151,7 @@ nav.sc{padding:12px 0;background:rgba(6,15,30,.88);backdrop-filter:blur(22px);bo
 .hc-prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:3px;width:0%;transition:width 1.8s var(--out) .6s}
 .hc-badges{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .hc-badge{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(245,158,11,.1);border:1px solid var(--border);color:var(--text-m)}
-.scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-d);opacity:0;z-index:2;animation:si 2.5s ease-in-out infinite 2s}
+.scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-d);z-index:2;animation:si 2.5s ease-in-out infinite 2s}
 .scroll-line{width:1.5px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent)}
 @keyframes si{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 
@@ -171,9 +171,9 @@ section{padding:var(--sp) 0;position:relative}
 .sec-h{font-family:var(--font-d);font-size:clamp(28px,4.5vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.025em;color:var(--text);margin-bottom:16px}
 .sec-s{font-size:16px;color:var(--text-m);line-height:1.7;max-width:540px}
 .sec-h .acc{color:var(--gold)}
-.reveal{opacity:0;transform:translateY(40px)}
-.reveal-l{opacity:0;transform:translateX(-40px)}
-.reveal-r{opacity:0;transform:translateX(40px)}
+.reveal{}
+.reveal-l{}
+.reveal-r{}
 
 /* ── SECTION: PROBLEM / SOLUTION ── */
 .ps-sec{background:var(--navy2)}
@@ -947,8 +947,9 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
 <script src="https://link.spotonresults.com/js/form_embed.js" type="text/javascript" async defer></script>
 
 <script>
-// ANIM: Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
+// ANIM: Register GSAP plugins — guard against CDN failures
+if (typeof gsap === 'undefined') { console.warn('GSAP not loaded'); }
+else { gsap.registerPlugin(ScrollTrigger); }
 
 /* ── SECTION: CURSOR ── */
 const cdot = document.getElementById('cdot');
@@ -1096,148 +1097,137 @@ hamBtn.addEventListener('click', () => {
 function splitLineChars(container) {
   container.querySelectorAll('.hline').forEach(line => {
     const html = line.innerHTML;
-    let result = '';
-    let inTag = false;
-    let tagContent = '';
+    let result = '', inTag = false, tagContent = '';
     for (let i = 0; i < html.length; i++) {
       const ch = html[i];
       if (ch === '<') { inTag = true; tagContent = '<'; continue; }
-      if (inTag) {
-        tagContent += ch;
-        if (ch === '>') { inTag = false; result += tagContent; }
-        continue;
-      }
-      if (ch === ' ') { result += '<span class="char" style="display:inline-block">&nbsp;</span>'; }
-      else { result += `<span class="char" style="display:inline-block">${ch}</span>`; }
+      if (inTag) { tagContent += ch; if (ch === '>') { inTag = false; result += tagContent; } continue; }
+      if (ch === ' ') result += '<span class="char" style="display:inline-block">&nbsp;</span>';
+      else result += `<span class="char" style="display:inline-block">${ch}</span>`;
     }
     line.innerHTML = result;
   });
 }
 
 window.addEventListener('load', () => {
-  splitLineChars(document.getElementById('hero-h1'));
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  tl.to('#hbadge', { opacity: 1, y: 0, duration: 0.6, delay: 0.2 })
-    .from('#hero-h1 .char', { opacity: 0, y: 60, rotateX: -40, duration: 0.7, stagger: 0.018, ease: 'power4.out' }, '-=0.2')
-    .to('#hero-sub', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-    .to('#hero-ctas', { opacity: 1, y: 0, duration: 0.5 }, '-=0.3')
-    .to('#hero-trust', { opacity: 1, y: 0, duration: 0.5 }, '-=0.3')
-    .to('#hero-card', { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out' }, '-=0.4')
-    .to('#scroll-ind', { opacity: 1, duration: 0.5 }, '-=0.2');
-  // Hero card progress fill
-  setTimeout(() => {
-    const hpf = document.getElementById('hpf');
-    if (hpf) hpf.style.width = '83%';
-  }, 900);
+  try {
+    if (typeof gsap === 'undefined') return;
+    splitLineChars(document.getElementById('hero-h1'));
+    // Set initial states via GSAP (NOT CSS) so fallback always shows content
+    gsap.set('#hbadge', { opacity: 0, y: -10 });
+    gsap.set('#hero-sub', { opacity: 0, y: 20 });
+    gsap.set('#hero-ctas', { opacity: 0, y: 20 });
+    gsap.set('#hero-trust', { opacity: 0, y: 10 });
+    gsap.set('#hero-card', { opacity: 0, y: 30, scale: 0.98 });
+    gsap.set('#hero-h1 .char', { opacity: 0, y: 50 });
+
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.to('#hbadge', { opacity: 1, y: 0, duration: 0.5, delay: 0.15 })
+      .to('#hero-h1 .char', { opacity: 1, y: 0, duration: 0.6, stagger: 0.016, ease: 'power4.out' }, '-=0.2')
+      .to('#hero-sub', { opacity: 1, y: 0, duration: 0.55 }, '-=0.3')
+      .to('#hero-ctas', { opacity: 1, y: 0, duration: 0.5 }, '-=0.3')
+      .to('#hero-trust', { opacity: 1, y: 0, duration: 0.45 }, '-=0.3')
+      .to('#hero-card', { opacity: 1, y: 0, scale: 1, duration: 0.65 }, '-=0.35');
+
+    setTimeout(() => { const hpf = document.getElementById('hpf'); if (hpf) hpf.style.width = '83%'; }, 900);
+  } catch(e) {
+    console.error('Hero anim failed:', e);
+  }
 });
 
 /* ── SECTION: SCROLL REVEAL ANIMATIONS ── */
-// ANIM: Generic reveals
-const revEls = document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
-revEls.forEach(el => {
-  const isL = el.classList.contains('reveal-l');
-  const isR = el.classList.contains('reveal-r');
-  gsap.fromTo(el,
-    { opacity: 0, x: isL ? -44 : isR ? 44 : 0, y: isL || isR ? 0 : 44 },
-    {
-      opacity: 1, x: 0, y: 0, duration: 0.85, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' }
-    }
-  );
-});
+try {
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 
-// ANIM: Bento cards stagger
-gsap.from('.bc', {
-  opacity: 0, y: 50, duration: 0.7, stagger: 0.1, ease: 'power3.out',
-  scrollTrigger: { trigger: '.bento', start: 'top 82%' }
-});
+    // ANIM: Generic reveals — set initial state first, then animate
+    document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => {
+      const isL = el.classList.contains('reveal-l');
+      const isR = el.classList.contains('reveal-r');
+      gsap.set(el, { opacity: 0, x: isL ? -44 : isR ? 44 : 0, y: isL || isR ? 0 : 44 });
+      gsap.to(el, {
+        opacity: 1, x: 0, y: 0, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+      });
+    });
 
-// ANIM: Bento card glow on mouse move
+    // ANIM: Bento cards stagger
+    gsap.set('.bc', { opacity: 0, y: 40 });
+    gsap.to('.bc', {
+      opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out',
+      scrollTrigger: { trigger: '.bento', start: 'top 85%' }
+    });
+
+    // ANIM: Process steps
+    gsap.set('.proc-step', { opacity: 0, y: 50 });
+    gsap.to('.proc-step', {
+      opacity: 1, y: 0, duration: 0.75, stagger: 0.16, ease: 'power3.out',
+      scrollTrigger: { trigger: '.proc-steps', start: 'top 85%' }
+    });
+
+    // ANIM: Industry cards
+    gsap.set('.ind-card', { opacity: 0, y: 30, scale: 0.97 });
+    gsap.to('.ind-card', {
+      opacity: 1, y: 0, scale: 1, duration: 0.55, stagger: 0.06, ease: 'power3.out',
+      scrollTrigger: { trigger: '.ind-grid', start: 'top 85%' }
+    });
+
+    // ANIM: Featured testimonial
+    gsap.set('.test-feat', { opacity: 0, y: 40 });
+    gsap.to('.test-feat', {
+      opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: '.test-feat', start: 'top 88%' }
+    });
+
+    // ANIM: FAQ
+    gsap.set('.faq-item', { opacity: 0, y: 20 });
+    gsap.to('.faq-item', {
+      opacity: 1, y: 0, duration: 0.55, stagger: 0.08, ease: 'power3.out',
+      scrollTrigger: { trigger: '.faq-wrap', start: 'top 86%' }
+    });
+
+    // ANIM: Comparison rows
+    gsap.set('.cmp-row', { opacity: 0, x: -20 });
+    gsap.to('.cmp-row', {
+      opacity: 1, x: 0, duration: 0.45, stagger: 0.05, ease: 'power2.out',
+      scrollTrigger: { trigger: '.cmp-tbl', start: 'top 85%' }
+    });
+
+    // ANIM: Hero parallax on scroll
+    gsap.to('#hero-h1', {
+      y: -50, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+    });
+  }
+} catch(e) { console.error('Scroll anims failed:', e); }
+
+// ANIM: Bento card glow on mouse move (no GSAP needed)
 document.querySelectorAll('.bc').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
-    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
-    card.style.setProperty('--mx', x + '%');
-    card.style.setProperty('--my', y + '%');
+    card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%');
   });
 });
-
-// ANIM: Process steps entrance
-gsap.from('.proc-step', {
-  opacity: 0, y: 60, duration: 0.8, stagger: 0.18, ease: 'power3.out',
-  scrollTrigger: { trigger: '.proc-steps', start: 'top 80%' }
-});
-
-// ANIM: Industry cards stagger
-gsap.from('.ind-card', {
-  opacity: 0, y: 40, scale: 0.96, duration: 0.6, stagger: 0.07, ease: 'power3.out',
-  scrollTrigger: { trigger: '.ind-grid', start: 'top 82%' }
-});
-
-// ANIM: Testimonial featured card parallax
-gsap.from('.test-feat', {
-  opacity: 0, y: 50, scale: 0.97, duration: 0.9, ease: 'power3.out',
-  scrollTrigger: { trigger: '.test-feat', start: 'top 85%' }
-});
-
-// ANIM: FAQ items stagger
-gsap.from('.faq-item', {
-  opacity: 0, y: 30, duration: 0.6, stagger: 0.09, ease: 'power3.out',
-  scrollTrigger: { trigger: '.faq-wrap', start: 'top 84%' }
-});
-
-// ANIM: CTA section
-gsap.from('.cta-sec .reveal > *', {
-  opacity: 0, y: 40, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-  scrollTrigger: { trigger: '.cta-sec', start: 'top 80%' }
-});
-
-// Fallback: reveal everything after 4s in case observer fails
-setTimeout(() => {
-  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => {
-    el.style.opacity = '1'; el.style.transform = 'none';
-  });
-}, 4000);
 
 /* ── SECTION: COUNTER ANIMATIONS ── */
 // ANIM: Count up when stats scroll into view
-document.querySelectorAll('.ctr').forEach(el => {
-  const target = parseInt(el.dataset.val);
-  ScrollTrigger.create({
-    trigger: el,
-    start: 'top 88%',
-    onEnter: () => {
-      gsap.to(el, {
-        textContent: target,
-        duration: 2,
-        ease: 'power2.out',
-        snap: { textContent: 1 },
-        onUpdate: function() { el.textContent = Math.round(parseFloat(el.textContent)); }
+try {
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    document.querySelectorAll('.ctr').forEach(el => {
+      const target = parseInt(el.dataset.val);
+      ScrollTrigger.create({
+        trigger: el, start: 'top 90%',
+        onEnter: () => {
+          gsap.to(el, {
+            textContent: target, duration: 2, ease: 'power2.out',
+            snap: { textContent: 1 },
+            onUpdate: function() { el.textContent = Math.round(parseFloat(el.textContent)); }
+          });
+        }
       });
-    }
-  });
-});
-
-/* ── SECTION: NAV PARALLAX ── */
-// ANIM: Hero parallax on scroll
-gsap.to('#hero-h1', {
-  y: -60,
-  ease: 'none',
-  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
-});
-gsap.to('#hero .hero-glow', {
-  y: -80,
-  ease: 'none',
-  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 2 }
-});
-
-/* ── SECTION: COMPARISON TABLE ── */
-// ANIM: Rows enter from left
-gsap.from('.cmp-row', {
-  opacity: 0, x: -30, duration: 0.5, stagger: 0.06, ease: 'power2.out',
-  scrollTrigger: { trigger: '.cmp-tbl', start: 'top 82%' }
-});
+    });
+  }
+} catch(e) { console.error('Counter anim failed:', e); }
 
 /* ── SECTION: FAQ ACCORDION ── */
 function toggleFaq(btn) {
@@ -1270,14 +1260,4 @@ function updateCalc() {
   cbSpoton.textContent = '$' + Math.round(spotonAnnual).toLocaleString();
 }
 volSlider.addEventListener('input', updateCalc);
-rateSlider.addEventListener('input', updateCalc);
-updateCalc();
-
-/* ── SECTION: BOOKING MODAL ── */
-function openBooking() {
-  document.getElementById('bookingModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeBooking() {
-  document.getElementById('bookingModal').classList.remove('open');
-  document.
+rateSlider.addEventListener('i
