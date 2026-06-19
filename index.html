@@ -902,7 +902,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       </div>
     </div>
     <div class="foot-bot">
-      <div class="foot-copy">© <script>document.write(new Date().getFullYear())</script> SpotOn Results. All rights reserved. Built for local businesses. Powered by results.</div>
+      <div class="foot-copy">© <span id="copy-year">2026</span> SpotOn Results. All rights reserved. Built for local businesses. Powered by results.</div>
       <div class="foot-badge">📅 <span><a href="#" onclick="openBooking();return false" style="color:var(--gold)">Book Your Free Consultation</a></span></div>
     </div>
   </div>
@@ -947,6 +947,10 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
 <script src="https://link.spotonresults.com/js/form_embed.js" type="text/javascript" async defer></script>
 
 <script>
+// Copyright year — set dynamically, no document.write
+const cyEl = document.getElementById('copy-year');
+if (cyEl) cyEl.textContent = new Date().getFullYear();
+
 // ANIM: Register GSAP plugins — guard against CDN failures
 if (typeof gsap === 'undefined') { console.warn('GSAP not loaded'); }
 else { gsap.registerPlugin(ScrollTrigger); }
@@ -1013,7 +1017,8 @@ function createParticles() {
 createParticles();
 window.addEventListener('resize', createParticles);
 
-// ANIM: Particle draw loop
+// ANIM: Particle draw loop — paused when hero is off-screen
+let particleRaf = null;
 function drawParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles.forEach((p, i) => {
@@ -1057,9 +1062,25 @@ function drawParticles() {
       }
     }
   });
-  requestAnimationFrame(drawParticles);
+  particleRaf = requestAnimationFrame(drawParticles);
 }
-drawParticles();
+
+// Only run particle loop while hero is visible — stops battery drain when scrolled past
+const heroSection = document.getElementById('hero');
+if (heroSection && 'IntersectionObserver' in window) {
+  const heroObs = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      if (!particleRaf) particleRaf = requestAnimationFrame(drawParticles);
+    } else {
+      cancelAnimationFrame(particleRaf);
+      particleRaf = null;
+    }
+  }, { threshold: 0 });
+  heroObs.observe(heroSection);
+} else {
+  // Fallback for old browsers
+  particleRaf = requestAnimationFrame(drawParticles);
+}
 
 /* ── SECTION: SCROLL PROGRESS BAR ── */
 window.addEventListener('scroll', () => {
@@ -1245,23 +1266,4 @@ const volDisp = document.getElementById('vol-disp');
 const rateDisp = document.getElementById('rate-disp');
 const calcSavings = document.getElementById('calc-savings');
 const cbCurrent = document.getElementById('cb-current');
-const cbSpoton = document.getElementById('cb-spoton');
-
-function updateCalc() {
-  const vol = parseInt(volSlider.value);
-  const rate = parseFloat(rateSlider.value);
-  const spotonRate = Math.max(rate - 1.0, 1.5);
-  const currentAnnual = vol * (rate / 100) * 12;
-  const spotonAnnual = vol * (spotonRate / 100) * 12;
-  const savings = currentAnnual - spotonAnnual;
-  volDisp.textContent = '$' + vol.toLocaleString();
-  rateDisp.textContent = rate.toFixed(2) + '%';
-  calcSavings.textContent = '$' + Math.round(savings).toLocaleString();
-  cbCurrent.textContent = '$' + Math.round(currentAnnual).toLocaleString();
-  cbSpoton.textContent = '$' + Math.round(spotonAnnual).toLocaleString();
-}
-volSlider.addEventListener('input', updateCalc);
-rateSlider.addEventListener('input', updateCalc);
-updateCalc();
-
-/* ── SECTION
+const cbSpoton = docu
