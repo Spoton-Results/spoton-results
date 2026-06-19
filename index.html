@@ -11,6 +11,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    function openBooking(){
+      var m=document.getElementById('bookingModal');
+      if(m){m.classList.add('open');document.body.style.overflow='hidden';}
+    }
+    function closeBooking(){
+      var m=document.getElementById('bookingModal');
+      if(m){m.classList.remove('open');document.body.style.overflow='';}
+    }
+    function closeBookingOnOverlay(e){
+      if(e.target===document.getElementById('bookingModal'))closeBooking();
+    }
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBooking();});
+  </script>
   <style>
     /* ===================== VARIABLES ===================== */
     :root {
@@ -1022,7 +1036,7 @@
     <div class="services-grid">
 
       <!-- Credit Card Processing -->
-      <div class="svc reveal" style="transition-delay:.05s">
+      <div class="svc reveal" id="svc-processing" style="transition-delay:.05s">
         <div class="svc-ico">💳</div>
         <h3>Credit Card Processing</h3>
         <p>Custom interchange-plus rates based on your volume and industry. We accept every card type — Visa, Mastercard, Amex, Discover — and pass on the real savings to you.</p>
@@ -1042,7 +1056,7 @@
       </div>
 
       <!-- POS Systems -->
-      <div class="svc reveal" style="transition-delay:.1s">
+      <div class="svc reveal" id="svc-pos" style="transition-delay:.1s">
         <div class="svc-ico">🖥️</div>
         <h3>Point of Sale Systems</h3>
         <p>Modern POS solutions for restaurants, retail, and service businesses. Includes inventory management, employee tracking, detailed reporting, and next-day deposits.</p>
@@ -1062,7 +1076,7 @@
       </div>
 
       <!-- Loyalty Programs -->
-      <div class="svc reveal" style="transition-delay:.15s">
+      <div class="svc reveal" id="svc-loyalty" style="transition-delay:.15s">
         <div class="svc-ico">🏆</div>
         <h3>Loyalty &amp; Rewards Programs</h3>
         <p>Fully customizable digital loyalty programs that drive repeat visits and increase average ticket. Our clients see 30–80% higher customer return rates within 6 months.</p>
@@ -1082,7 +1096,7 @@
       </div>
 
       <!-- Digital Marketing -->
-      <div class="svc reveal" style="transition-delay:.2s">
+      <div class="svc reveal" id="svc-marketing" style="transition-delay:.2s">
         <div class="svc-ico">📣</div>
         <h3>Digital Marketing</h3>
         <p>SEO campaigns, Google Business optimization, social media management, and reputation marketing — all designed to bring more qualified local customers through your door.</p>
@@ -1102,7 +1116,7 @@
       </div>
 
       <!-- Websites & CRM -->
-      <div class="svc reveal" style="transition-delay:.25s">
+      <div class="svc reveal" id="svc-crm" style="transition-delay:.25s">
         <div class="svc-ico">🌐</div>
         <h3>Websites &amp; CRM</h3>
         <p>High-converting websites paired with a CRM to manage leads, book appointments, and automate follow-ups — turning more visitors into paying customers, automatically.</p>
@@ -1122,7 +1136,7 @@
       </div>
 
       <!-- Business Funding -->
-      <div class="svc reveal" style="transition-delay:.3s">
+      <div class="svc reveal" id="svc-funding" style="transition-delay:.3s">
         <div class="svc-ico">🏦</div>
         <h3>Business Funding</h3>
         <p>Working capital advances based on your processing volume. Fast approvals, flexible repayment tied to daily sales — no collateral, no lengthy bank applications required.</p>
@@ -1388,9 +1402,10 @@
       <p>Book a free 30-minute consultation. We'll analyze your current statement, show you exactly what you're leaving on the table, and present your options. No pressure. No commitment required.</p>
       <div class="cta-btns">
         <a href="#" onclick="openBooking();return false;" class="btn btn-gold btn-gold-lg btn-pulse">📅 Book Free Consultation</a>
-        <a href="tel:+1" class="btn btn-ghost btn-ghost-lg">📞 Call Us Now</a>
+        <a href="tel:+14358620910" class="btn btn-ghost btn-ghost-lg">📞 Call Us Now</a>
       </div>
       <p class="cta-fine">✓ No credit card required &nbsp;&nbsp;&nbsp; ✓ No contracts &nbsp;&nbsp;&nbsp; ✓ Results or we'll tell you why not</p>
+      <p class="cta-fine" style="margin-top:10px;">Questions? Call us directly: <a href="tel:+14358620910" style="color:var(--gold);font-weight:700;">(435) 862-0910</a></p>
     </div>
   </div>
 </section>
@@ -1406,6 +1421,7 @@
         </div>
         <p>Business Payment Advisors helping local businesses streamline transactions, increase efficiency, and save on processing costs with our trusted network of providers.</p>
         <div class="foot-contact">
+          <a href="tel:+14358620910">📞 (435) 862-0910</a>
           <a href="mailto:s.allen@spotonresults.com">📧 s.allen@spotonresults.com</a>
           <a href="https://spotonresults.com">🌐 spotonresults.com</a>
         </div>
@@ -1413,12 +1429,12 @@
       <div class="foot-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="#services">Credit Card Processing</a></li>
-          <li><a href="#services">POS Systems</a></li>
-          <li><a href="#services">Loyalty Programs</a></li>
-          <li><a href="#services">Digital Marketing</a></li>
-          <li><a href="#services">Websites &amp; CRM</a></li>
-          <li><a href="#services">Business Funding</a></li>
+          <li><a href="#svc-processing">Credit Card Processing</a></li>
+          <li><a href="#svc-pos">POS Systems</a></li>
+          <li><a href="#svc-loyalty">Loyalty Programs</a></li>
+          <li><a href="#svc-marketing">Digital Marketing</a></li>
+          <li><a href="#svc-crm">Websites &amp; CRM</a></li>
+          <li><a href="#svc-funding">Business Funding</a></li>
         </ul>
       </div>
       <div class="foot-col">
