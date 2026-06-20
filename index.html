@@ -1090,20 +1090,24 @@ else { gsap.registerPlugin(ScrollTrigger); }
 /* ── SECTION: CURSOR ── */
 const cdot = document.getElementById('cdot');
 const cring = document.getElementById('cring');
-let mx = 0, my = 0, rx = 0, ry = 0;
+let mx = 0, my = 0;
 
 let cursorVisible = false;
 window.addEventListener('pointermove', e => {
-  if (!cdot || !cring) return;
   mx = e.clientX; my = e.clientY;
-  cdot.style.transform = 'translate3d(' + (mx-4) + 'px,' + (my-4) + 'px,0)';
-  cring.style.transform = 'translate3d(' + (mx-20) + 'px,' + (my-20) + 'px,0)';
-  if (!cursorVisible) {
+  if (!cursorVisible && cdot && cring) {
     cdot.style.opacity = '1';
     cring.style.opacity = '1';
     cursorVisible = true;
   }
 }, true);
+
+// rAF loop: decouple cursor visual from event timing — always syncs at 60fps
+(function cursorLoop() {
+  if (cdot) cdot.style.transform = 'translate3d(' + (mx-4) + 'px,' + (my-4) + 'px,0)';
+  if (cring) cring.style.transform = 'translate3d(' + (mx-20) + 'px,' + (my-20) + 'px,0)';
+  requestAnimationFrame(cursorLoop);
+})();
 
 // Cursor hover states
 document.querySelectorAll('a,button,.bc,.ind-card,.proc-step,.test-card,.faq-q,.ps-item').forEach(el => {
@@ -1359,12 +1363,14 @@ try {
   }
 } catch(e) { console.error('Scroll anims failed:', e); }
 
-// ANIM: Bento card glow on mouse move (no GSAP needed)
+// ANIM: Bento card glow on mouse move — cache rect on enter to avoid forced layout each move
 document.querySelectorAll('.bc').forEach(card => {
+  let bcRect;
+  card.addEventListener('mouseenter', () => { bcRect = card.getBoundingClientRect(); });
   card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%');
-    card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%');
+    if (!bcRect) bcRect = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - bcRect.left) / bcRect.width * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', ((e.clientY - bcRect.top) / bcRect.height * 100).toFixed(1) + '%');
   });
 });
 
