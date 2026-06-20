@@ -336,6 +336,8 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
 /* ── SECTION: BOOKING MODAL ── */
 .modal{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;background:rgba(6,15,30,.92);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .35s}
 .modal.open{opacity:1;pointer-events:all}
+.modal iframe{pointer-events:none}
+.modal.open iframe{pointer-events:auto}
 .modal-box{position:relative;width:min(720px,calc(100% - 32px));max-height:90vh;background:var(--navy3);border:1px solid var(--border-s);border-radius:var(--rx);overflow:hidden;transform:scale(.95) translateY(20px);transition:transform .4s var(--spring);box-shadow:0 40px 100px rgba(0,0,0,.6),var(--glow-s)}
 .modal.open .modal-box{transform:scale(1) translateY(0)}
 .modal-hdr{padding:26px 30px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
