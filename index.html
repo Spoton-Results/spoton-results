@@ -1091,7 +1091,7 @@ const cring = document.getElementById('cring');
 let mx = 0, my = 0, rx = 0, ry = 0;
 
 let cursorVisible = false;
-window.addEventListener('mousemove', e => {
+window.addEventListener('pointermove', e => {
   if (!cdot || !cring) return;
   mx = e.clientX; my = e.clientY;
   cdot.style.transform = 'translate3d(' + (mx-4) + 'px,' + (my-4) + 'px,0)';
@@ -1108,8 +1108,9 @@ document.querySelectorAll('a,button,.bc,.ind-card,.proc-step,.test-card,.faq-q,.
   el.addEventListener('mouseenter', () => { cdot.classList.add('h'); cring.classList.add('h'); });
   el.addEventListener('mouseleave', () => { cdot.classList.remove('h'); cring.classList.remove('h'); });
 });
-document.addEventListener('mousedown', () => { cdot.classList.add('c'); cring.classList.add('c'); });
-document.addEventListener('mouseup', () => { cdot.classList.remove('c'); cring.classList.remove('c'); });
+document.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('mousedown', () => { if(cdot) cdot.classList.add('c'); if(cring) cring.classList.add('c'); });
+document.addEventListener('mouseup', () => { if(cdot) cdot.classList.remove('c'); if(cring) cring.classList.remove('c'); });
 
 /* ── SECTION: PARTICLE CANVAS ── */
 const canvas = document.getElementById('pcanvas');
@@ -1125,7 +1126,7 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-window.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
+window.addEventListener('pointermove', e => { pmx = e.clientX; pmy = e.clientY; });
 
 // ANIM: Particle init
 function createParticles() {
