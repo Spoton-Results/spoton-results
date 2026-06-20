@@ -566,7 +566,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       <li><a href="#testimonials">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <button class="nav-cta" onclick="openBooking()">Book Free Analysis</button>
+    <button class="nav-cta" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank')">Book Free Analysis</button>
     <button class="ham" id="ham-btn" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -583,7 +583,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
     <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
   </ul>
   <div class="mob-cta">
-    <button class="btn-p" onclick="openBooking();closeMenu()">📅 Book Free Analysis</button>
+    <button class="btn-p" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank');closeMenu()">📅 Book Free Analysis</button>
   </div>
 </div>
 
@@ -603,7 +603,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       </h1>
       <p class="hero-sub" id="hero-sub">We're your local payment advisor — we shop 30+ processors, analyze your statement, and deliver custom solutions that save your business real money. No contracts. No hidden fees. Just results.</p>
       <div class="hero-ctas" id="hero-ctas">
-        <button class="btn-p" onclick="openBooking()">📅 Book Free Consultation</button>
+        <button class="btn-p" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank')">📅 Book Free Consultation</button>
         <a href="#calculator" class="btn-g">💰 Calculate My Savings →</a>
       </div>
       <div class="hero-trust" id="hero-trust">
@@ -935,7 +935,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
             <div class="cb-item"><div class="cb-lbl">Current Annual Cost</div><div class="cb-val" id="cb-current">$17,400</div></div>
             <div class="cb-item"><div class="cb-lbl">SpotOn Est. Cost</div><div class="cb-val" id="cb-spoton">$11,400</div></div>
           </div>
-          <button class="btn-p" style="width:100%;margin-top:20px;text-align:center;display:block" onclick="openBooking()">Lock In These Savings →</button>
+          <button class="btn-p" style="width:100%;margin-top:20px;text-align:center;display:block" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank')">Lock In These Savings →</button>
           <div class="calc-note">* Based on typical 1.0% rate reduction. Actual savings vary. Book a free consultation for your exact numbers.</div>
         </div>
       </div>
@@ -970,7 +970,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       <h2 class="cta-h">Ready to stop <span style="color:var(--gold)">overpaying?</span></h2>
       <p class="cta-s">Book a free 30-minute consultation. We'll analyze your current statement, show you exactly what you're leaving on the table, and present your options. No pressure. No commitment required.</p>
       <div class="cta-acts">
-        <button class="btn-p" onclick="openBooking()" style="font-size:16px;padding:17px 34px">📅 Book Free Consultation</button>
+        <button class="btn-p" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank')" style="font-size:16px;padding:17px 34px">📅 Book Free Consultation</button>
         <a href="tel:4358620910" class="btn-g" style="font-size:15px">📞 Call (435) 862-0910</a>
       </div>
       <div class="cta-trust">✓ No credit card required &nbsp;&nbsp; <em>✓ No contracts</em> &nbsp;&nbsp; ✓ Results or we'll tell you why not</div>
@@ -1029,24 +1029,17 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
           <li><a href="#calculator">Savings Calculator</a></li>
           <li><a href="#testimonials">Client Stories</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#" onclick="openBooking();return false">Book Consultation</a></li>
+          <li><a href="#" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank');return false">Book Consultation</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bot">
       <div class="foot-copy">© <span id="copy-year">2026</span> SpotOn Results. All rights reserved. Built for local businesses. Powered by results.</div>
-      <div class="foot-badge">📅 <span><a href="#" onclick="openBooking();return false" style="color:var(--gold)">Book Your Free Consultation</a></span></div>
+      <div class="foot-badge">📅 <span><a href="#" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank');return false" style="color:var(--gold)">Book Your Free Consultation</a></span></div>
     </div>
   </div>
 </footer>
 
-<!-- ── SECTION: BOOKING MODAL ── -->
-<div class="modal" id="bookingModal" onclick="closeBookingOnOverlay(event)">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <h3>📅 Book Your Free Consultation</h3>
-      <button class="modal-close" onclick="closeBooking()">✕</button>
-    </div>
     <div class="modal-body">
       <div class="modal-info">
         <div class="mi-item"><div class="mi-lbl">Duration</div><div class="mi-val">30 minutes</div></div>
@@ -1076,7 +1069,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
   <div class="dv-con" id="dv-content"></div>
 </div>
 
-<script src="https://link.spotonresults.com/js/form_embed.js" type="text/javascript" async defer></script>
+
 
 <script>
 // Copyright year — set dynamically, no document.write
@@ -1447,21 +1440,9 @@ rateSlider.addEventListener('input', updateCalc);
 updateCalc();
 
 /* ── SECTION: BOOKING MODAL ── */
-const bookingModal = document.getElementById('bookingModal');
 function openBooking() {
-  if (!bookingModal) return;
-  bookingModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy', '_blank');
 }
-function closeBooking() {
-  if (!bookingModal) return;
-  bookingModal.classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeBookingOnOverlay(e) {
-  if (e.target === bookingModal) closeBooking();
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBooking(); });
 
 /* ── SECTION: DEV PANEL ── */
 let devOpen = false;
