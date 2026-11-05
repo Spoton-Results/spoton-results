@@ -1,0 +1,65 @@
+name: Connect Square homepage links
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/connect-square.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+jobs:
+  connect-square:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Apply only the approved homepage additions
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib
+          p = Path('index.html')
+          raw = p.read_bytes()
+          sha = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+          s = raw.decode('utf-8')
+          if 'id="square-home-offer"' in s:
+              raise SystemExit('Square homepage section already exists; no changes made.')
+          assert sha == '9d453f2c3ecf0a590bb6971649624170975218a5', 'Homepage changed; stop to avoid overwriting newer work.'
+          def replace_once(old, new):
+              global s
+              assert s.count(old) == 1, 'Expected exactly one anchor: ' + old
+              s = s.replace(old, new, 1)
+          replace_once('<ul class="nav-links">', '<ul class="nav-links">\n      <li><a href="/square.html">Square</a></li>')
+          marker = '<div class="mob-menu" id="mob-menu">'
+          start = s.index(marker)
+          ul = s.index('<ul>', start)
+          s = s[:ul] + s[ul:].replace('<ul>', '<ul>\n    <li><a href="/square.html" onclick="closeMenu()">Square</a></li>', 1)
+          section = '''
+          <section id="square-home-offer" aria-labelledby="square-home-heading" style="background:#f6f8fc;color:#0d1b33;border-bottom:1px solid #dbe2ec">
+            <div class="con">
+              <div class="sec-tag" style="color:#92400e">Explore Square</div>
+              <h2 class="sec-h" id="square-home-heading" style="color:#0d1b33">Get Square. <span style="color:#b45309">Know who to call.</span></h2>
+              <p style="max-width:740px;color:#43516a;font-size:18px;line-height:1.75;margin-bottom:26px">Explore Square's payment and business tools through SpotOn Results. Review standard pricing or the 4% dual-pricing enrollment option, and ask about the Turnkey support arrangement available with your enrollment.</p>
+              <a class="btn-p" href="/square.html" style="white-space:normal;cursor:pointer">Explore Square &amp; Support Options &rarr;</a>
+              <p style="max-width:740px;color:#526078;font-size:13px;line-height:1.7;margin-top:18px">Pricing, eligibility, and support scope depend on your enrollment arrangement. Review the applicable terms before signing up.</p>
+            </div>
+          </section>
+          '''
+          replace_once('<section class="ps-sec"', section + '\n<section class="ps-sec"')
+          replace_once('<li><a href="#svc-processing">Credit Card Processing</a></li>', '<li><a href="/square.html">Square Enrollment &amp; Support</a></li>\n          <li><a href="#svc-processing">Credit Card Processing</a></li>')
+          assert s.count('id="square-home-offer"') == 1
+          assert s.count('href="/square.html"') >= 4
+          p.write_bytes(s.encode('utf-8'))
+      - name: Commit homepage update
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Connect Square page in homepage navigation, feature section and footer'
+          git push origin HEAD:main
+      - name: Request GitHub Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/Spoton-Results/spoton-results/pages/builds
