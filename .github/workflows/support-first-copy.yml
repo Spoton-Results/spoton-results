@@ -1,0 +1,64 @@
+name: Make Square support the lead offer
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/support-first-copy.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Apply exact support-first corrections
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib, re
+          expected = {'index.html': '236231005635aa3832934c0ef5a122a2d0bf0857', 'square.html': '7351bfb0a2eca3d355aa3e7f9cfb7be05f9e94f1'}
+          files = {}
+          for name, wanted in expected.items():
+              raw = Path(name).read_bytes()
+              actual = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+              assert actual == wanted, name + ' changed; stop for review.'
+              files[name] = raw.decode('utf-8')
+          def once(s, old, new):
+              assert s.count(old) == 1, 'Expected one copy of: ' + old
+              return s.replace(old, new, 1)
+          home = files['index.html']
+          home = once(home, '<h2>Powerful tools.<br><span>A human connection.</span></h2>', '<h2>Square tools.<br><span>Human support.</span></h2>')
+          home = once(home, 'You have customers to serve, not time to hunt for help. Explore Square with a real contact to talk through your setup, pricing, and support options.', 'When you need help with your payment system, you need to know who to call. Get started with Square through SpotOn Results and establish your support connection from the beginning—not just your account.')
+          home = once(home, '<span>Setup guidance</span><span>Clear pricing choices</span>', '<span>A real contact</span><span>A clear support path</span>')
+          home = once(home, 'Find my Square setup &rarr;', 'Get Square with a support connection &rarr;')
+          card = '''<aside class="sq-card" aria-label="Your support connection"><p class="sq-card-tag">More than a signup link</p><h3>Who do you turn to when you need help?</h3><div class="sq-option"><strong>Start with a real person</strong><p>Contact SpotOn Results directly about your account setup and support options.</p></div><div class="sq-option"><strong>Know your next step</strong><p>Establish who handles support and how an issue gets escalated before you enroll.</p></div><p class="sq-card-foot">Call <a href="tel:4358620910">(435) 862-0910</a>. Choose your pricing on the Square page.</p></aside>'''
+          home, n = re.subn(r'<aside class="sq-card".*?</aside>', lambda m: card, home, flags=re.S)
+          assert n == 1
+          sq = files['square.html']
+          sq = once(sq, '<h1>Your business needs payments.<br><span>Not another support headache.</span></h1>', '<h1>Get Square.<br><span>Know who to call when you need help.</span></h1>')
+          sq = once(sq, "Get Square's payment and business tools without choosing your setup alone. Start with SpotOn Results for pricing guidance and a clear explanation of who to contact when you need help.", 'Your payment system should come with a clear path to help. Get Square through SpotOn Results, with a real contact for your questions and a defined support arrangement—not just a signup link.')
+          sq = once(sq, '<a class="btn" href="#choices">Choose my pricing option &rarr;</a>', '<a class="btn" href="#choices">Get started with Square &rarr;</a>') if sq.count('<a class="btn" href="#choices">Choose my pricing option &rarr;</a>') == 1 else sq.replace('<a class="btn" href="#choices">Choose my pricing option &rarr;</a>', '<a class="btn" href="#choices">Get started with Square &rarr;</a>')
+          support_pattern = r'<section class="content" id="support">.*?</section>'
+          assert len(re.findall(support_pattern, sq, flags=re.S)) == 1
+          sq = re.sub(support_pattern, '', sq, flags=re.S)
+          support = '''
+          <section class="content" id="support"><div class="wrap support"><div class="eyebrow">Why enroll through SpotOn Results?</div><h2>Because knowing where to get help matters after signup, too.</h2><p>Choosing Square is one decision. Knowing who to contact when questions come up is another. Start here to establish that relationship before you enroll.</p><div class="three"><div><h3>A real first contact</h3><p>Call SpotOn Results at <a href="tel:4358620910">(435) 862-0910</a> or <a href="mailto:s.allen@spotonresults.com">email Shawn</a>. You have a named business to contact about this offer.</p></div><div><h3>Support beyond the sales pitch</h3><p>We introduce merchants through Turnkey, which provides support under the applicable enrollment arrangement. Get the included services and support hours explained before you sign up.</p></div><div><h3>A clear escalation path</h3><p>Know which team handles your issue and how unresolved questions reach the appropriate provider. Support should not be a mystery you discover later.</p></div></div><div class="actions"><a class="btn" href="#choices">See my two pricing options &rarr;</a><a href="tel:4358620910">Talk about support first</a></div><p class="note">Partner support is separate from Square's plan-based support. Services, hours, and escalation arrangements depend on your enrollment. No response-time or resolution guarantee is implied.</p></div></section>
+          '''
+          sq = once(sq, '<main>', '<main>' + support)
+          for name, text in [('index.html', home), ('square.html', sq)]:
+              Path(name).write_bytes(text.encode('utf-8'))
+      - name: Commit both focused edits
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html square.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Lead with customer support on homepage and Square signup page'
+          git push origin HEAD:main
+      - name: Request Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/Spoton-Results/spoton-results/pages/builds
